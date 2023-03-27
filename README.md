@@ -15,22 +15,33 @@
 ## Database
 check docker/database.yml for db address
 
+### pgadmin
+local pgadmin instance on http://localhost:5050/
+
+add Postgres server:
+- `host`: host.docker.internal, `port`: 5432-5434
+
 ## Services
 ### Eureka Server
 port: 9876
 
-### User service
-port:
+### API Gateway
+port: 9090
 
+### User service
+port: 9091
 
 ### Room service
-port:
+port: 9092
 
 ### Financial service
 Handle booking, payment, promotion,...
-port: 
+port: 9093
 
-# 
-pgadmin add Postgres server:
-- `host`: host.docker.internal, `port`: 5432-5434
 
+## Code quality
+Analyse code quality using Sonar.
+
+Run  
+`docker-compose -f docker/sonar.yml up -d`  
+then visit the local Sonar server on http://localhost:9001.
