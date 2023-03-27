@@ -11,3 +11,7 @@
 
 - use maven wrapper `./mvnw` if you are on FPT proxy
 
+# 
+pgadmin add Postgres server:
+- `host`: host.docker.internal, `port`: 5433-5434
+

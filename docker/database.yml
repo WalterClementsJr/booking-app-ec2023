@@ -12,9 +12,9 @@ services:
     # remove the "127.0.0.1:" prefix
     ports:
       - "127.0.0.1:5432:5432"
+    expose:
+      - "5432"
     restart: unless-stopped
-#    networks:
-#      - booking-user-postgresql
 
   booking-room-postgresql:
     image: postgres:14.5
@@ -26,9 +26,9 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "127.0.0.1:5433:5433"
+    expose:
+      - "5433"
     restart: unless-stopped
-#    networks:
-#      - booking-room-postgresql
 
   booking-financial-postgresql:
     image: postgres:14.5
@@ -40,26 +40,6 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "127.0.0.1:5434:5434"
-    restart: unless-stopped
-#    networks:
-#      - booking-financial-postgresql
-
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - ~/volumes/pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    depends_on:
-      - booking-financial-postgresql
-      - booking-room-postgresql
-      - booking-user-postgresql
-#    networks:
-#      - booking-user-postgresql
-#      - booking-room-postgresql
-#      - booking-financial-postgresql
+    expose:
+      - "5434"
     restart: unless-stopped

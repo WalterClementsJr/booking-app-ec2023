@@ -1,7 +1,22 @@
-# This configuration is intended for development purpose
 version: '3.8'
 services:
   zipkin:
     image: openzipkin/zipkin:2.23
     ports:
       - 127.0.0.1:9411:9411
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - ~/volumes/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    depends_on:
+      - booking-financial-postgresql
+      - booking-room-postgresql
+      - booking-user-postgresql
+    restart: unless-stopped
