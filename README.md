@@ -32,5 +32,5 @@ port:
 
 # 
 pgadmin add Postgres server:
-- `host`: host.docker.internal, `port`: 5433-5434
+- `host`: host.docker.internal, `port`: 5432-5434
 
