@@ -45,3 +45,6 @@ Analyse code quality using Sonar.
 Run  
 `docker-compose -f docker/sonar.yml up -d`  
 then visit the local Sonar server on http://localhost:9001.
+
+Change default password to `password`, create a new project named `booking`.
+Can now run `sonar-scan.cmd` to scan your code.

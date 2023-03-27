@@ -8,6 +8,8 @@ spring:
   sleuth:
     sampler:
       probability: 0.5
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
       routes:
