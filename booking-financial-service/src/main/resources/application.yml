@@ -1,1 +1,17 @@
-
+server:
+  port: 9093
+spring:
+  application:
+    name: booking-financial-service
+  datasource:
+    url: jdbc:postgresql://localhost:5434/booking
+    username: user
+    password: javaec2023
+  zipkin:
+    base-url: http://localhost:9411/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9876/eureka
+    fetch-registry: true
+    register-with-eureka: true
