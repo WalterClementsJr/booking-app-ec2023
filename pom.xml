@@ -34,6 +34,10 @@
         <spring-cloud.version>2022.0.1</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <sonar.host.url>http://127.0.0.1:9001</sonar.host.url>
+        <sonar.login>be2fe3y27f07db354983dfxysdsa5256</sonar.login>
+        <sonar.language>java</sonar.language>
+        <sonar.scm.provider>git</sonar.scm.provider>
     </properties>
 
     <dependencyManagement>
@@ -102,6 +106,11 @@
                         <enabled>true</enabled>
                     </layers>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
             </plugin>
         </plugins>
     </build>

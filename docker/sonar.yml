@@ -7,3 +7,4 @@ services:
       - sonar.forceAuthentication=false
     ports:
       - 127.0.0.1:9001:9000
+    entrypoint:
