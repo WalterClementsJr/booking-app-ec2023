@@ -11,6 +11,25 @@
 
 - use maven wrapper `./mvnw` if you are on FPT proxy
 
+
+## Database
+check docker/database.yml for db address
+
+## Services
+### Eureka Server
+port: 9876
+
+### User service
+port:
+
+
+### Room service
+port:
+
+### Financial service
+Handle booking, payment, promotion,...
+port: 
+
 # 
 pgadmin add Postgres server:
 - `host`: host.docker.internal, `port`: 5433-5434
