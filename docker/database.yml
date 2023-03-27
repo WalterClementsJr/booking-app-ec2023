@@ -12,8 +12,6 @@ services:
     # remove the "127.0.0.1:" prefix
     ports:
       - "127.0.0.1:5432:5432"
-    expose:
-      - "5432"
     restart: unless-stopped
 
   booking-room-postgresql:
@@ -25,9 +23,7 @@ services:
       - POSTGRES_PASSWORD=javaec2023
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - "127.0.0.1:5433:5433"
-    expose:
-      - "5433"
+      - "127.0.0.1:5433:5432"
     restart: unless-stopped
 
   booking-financial-postgresql:
@@ -39,7 +35,5 @@ services:
       - POSTGRES_PASSWORD=javaec2023
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - "127.0.0.1:5434:5434"
-    expose:
-      - "5434"
+      - "127.0.0.1:5434:5432"
     restart: unless-stopped
