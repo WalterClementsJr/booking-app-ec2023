@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  bookingapp-sonar:
+    image: sonarqube:9.6.0-community
+    # For real use cases delete sonar.forceAuthentication variable or set sonar.forceAuthentication=true
+    environment:
+      - sonar.forceAuthentication=false
+    ports:
+      - 127.0.0.1:9001:9000
