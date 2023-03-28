@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Analyze on SonarCloud
-          command: mvn compile sonar:sonar
+          name: test and analyze on Sonar
+          command: mvn test sonar:sonar
 executors:
   jdk:
     docker:
@@ -20,5 +20,9 @@ workflows:
     jobs:
       - maven/test:
           executor: jdk
+#          filters:
+#            branches:
+#              only:
+#                - main
       - analyze:
           context: SonarCloud
