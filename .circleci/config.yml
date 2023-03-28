@@ -3,17 +3,17 @@ version: 2.1
 jobs:
   analyze:
     docker:
-      - image: '11.0-node'
+      - image: 'cimg/openjdk:11.0-node'
     steps:
       - checkout
       - run:
           name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar
+          command: mvn test sonar:sonar
 
 executors:
   jdk:
     docker:
-      - image: '11.0-node'
+      - image: 'cimg/openjdk:11.0-node'
 
 orbs:
   maven: circleci/maven@1.4.1
