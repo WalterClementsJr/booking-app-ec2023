@@ -35,8 +35,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
-        <sonar.projectKey>booking-app-ec2023</sonar.projectKey>
-        <sonar.organization>Walter</sonar.organization>
+        <sonar.projectKey>WalterClementsJr_booking-app-ec2023</sonar.projectKey>
+        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+        <sonar.organization>walterclementsjr</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
