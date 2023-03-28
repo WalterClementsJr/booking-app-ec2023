@@ -1,6 +1,7 @@
 # Booking App
 
 [![CircleCI](https://circleci.com/gh/WalterClementsJr/booking-app-ec2023.svg?style=svg)](https://circleci.com/gh/WalterClementsJr/booking-app-ec2023)
+[![GithubActions](https://github.com/walterclementsjr/booking-app-ec2023/actions/workflows/maven.yml/badge.svg)](https://github.com/walterclementsjr/booking-app-ec2023)
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=WalterClementsJr_booking-app-ec2023)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=WalterClementsJr_booking-app-ec2023&metric=bugs)](https://sonarcloud.io/dashboard?id=WalterClementsJr_booking-app-ec2023)
