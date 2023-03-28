@@ -6,7 +6,7 @@ jobs:
       image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      - run: mvn test sonar:sonar
+      - run: mvn test
 workflows:
   maven_test:
     jobs:
