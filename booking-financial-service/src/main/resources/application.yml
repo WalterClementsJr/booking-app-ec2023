@@ -1,14 +1,14 @@
-server:
-  port: 9093
+server.port: 9093
 spring:
-  application:
-    name: booking-financial-service
+  application.name: booking-financial-service
   datasource:
     url: jdbc:postgresql://localhost:5434/booking
     username: user
     password: javaec2023
-  zipkin:
-    base-url: http://localhost:9411/
+  zipkin.base-url: http://localhost:9411/
+  kafka:
+    bootstrap-servers: 127.0.0.1:29092
+
 eureka:
   client:
     service-url:
