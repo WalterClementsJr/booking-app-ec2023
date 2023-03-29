@@ -15,3 +15,26 @@ eureka:
       defaultZone: http://localhost:9876/eureka
     fetch-registry: true
     register-with-eureka: true
+
+management:
+  security:
+    enabled: false
+#  server:
+#    address: localhost
+#    port: 6060
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  metrics:
+    enable.jvm: true

@@ -10,9 +10,24 @@ spring:
     base-url: http://localhost:9411/
   kafka:
     bootstrap-servers: 127.0.0.1:29092
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9876/eureka
     fetch-registry: true
     register-with-eureka: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
