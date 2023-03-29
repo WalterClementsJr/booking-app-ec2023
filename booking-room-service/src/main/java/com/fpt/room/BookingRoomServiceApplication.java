@@ -1,4 +1,4 @@
-package com.fpt.user;
+package com.fpt.room;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
 @EnableKafka
-public class UserServiceApplication {
+public class BookingRoomServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
+        SpringApplication.run(BookingRoomServiceApplication.class, args);
     }
 }
