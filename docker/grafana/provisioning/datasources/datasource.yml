@@ -8,18 +8,11 @@ deleteDatasources:
 # list of datasources to insert/update depending
 # whats available in the database
 datasources:
-  # <string, required> name of the datasource. Required
   - name: Prometheus
-    # <string, required> datasource type. Required
     type: prometheus
-    # <string, required> access mode. direct or proxy. Required
     access: proxy
-    # <int> org id. will default to orgId 1 if not specified
     orgId: 1
-    # <string> url
-    # On MacOS, replace localhost by host.docker.internal
-    url: http://localhost:9090
-    # <string> database password, if used
+    url: http://localhost:6060
     password:
     # <string> database user, if used
     user:
