@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - "dev"
-      - "feature/admin"
   pull_request:
     branches:
       - "dev"
-      - "feature/admin"
     types: [opened, synchronize, closed]
 
 jobs:
