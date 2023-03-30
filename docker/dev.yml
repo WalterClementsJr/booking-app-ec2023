@@ -6,13 +6,11 @@ services:
       - "9411:9411"
 
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:6.21
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - ~/volumes/pgadmin:/var/lib/pgadmin
     ports:
       - "5050:80"
     restart: unless-stopped

@@ -3,9 +3,10 @@ services:
   booking-user-postgresql:
     image: postgres:14.5
     volumes:
-      - ~/volumes/bookingapp-user/postgresql/:/var/lib/postgresql/data/
+      - pg-user:/var/lib/postgresql/data
+      - ../sql/init.user.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - POSTGRES_USER=user
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=javaec2023
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
@@ -15,9 +16,10 @@ services:
   booking-room-postgresql:
     image: postgres:14.5
     volumes:
-      - ~/volumes/bookingapp-room/postgresql/:/var/lib/postgresql/data/
+      - pg-room:/var/lib/postgresql/data
+      - ../sql/init.room.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - POSTGRES_USER=user
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=javaec2023
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
@@ -27,11 +29,20 @@ services:
   booking-financial-postgresql:
     image: postgres:14.5
     volumes:
-      - ~/volumes/bookingapp-financial/postgresql/:/var/lib/postgresql/data/
+      - pg-fin:/var/lib/postgresql/data
+      - ../sql/init.financial.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - POSTGRES_USER=user
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=javaec2023
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "127.0.0.1:5434:5432"
     restart: unless-stopped
+
+volumes:
+  pg-user:
+    driver: local
+  pg-room:
+    driver: local
+  pg-fin:
+    driver: local
