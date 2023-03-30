@@ -26,7 +26,10 @@ check `docker/database.yml` for db address
 local pgadmin instance on http://localhost:5050/
 
 add Postgres server:
-- `host`: host.docker.internal, `port`: 5432-5434
+- `host`: host.docker.internal
+- `port`: 5432-5434
+- `username`: postgres
+- `password`: javaec2023
 
 ## Services
 ### Eureka Server
