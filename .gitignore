@@ -1,8 +1,11 @@
+# project
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 log/*
+docker/grafana/*
+!docker/grafana/provisioning/*
 
 ### STS ###
 .apt_generated
