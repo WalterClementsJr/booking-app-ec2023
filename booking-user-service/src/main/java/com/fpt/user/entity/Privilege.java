@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "privilege")
+@Table(name = "booking_privilege")
 @NoArgsConstructor
 public class Privilege extends BaseEntity {
     @Column(name = "name")

@@ -82,3 +82,5 @@ then visit the local Sonar server on http://localhost:9001.
 Change default password to `password`, create a new project with key (name) `WalterClementsJr_booking-app-ec2023`
 then run `sonar-scan.cmd` to scan your code.
 
+AOP for logging
+i18n

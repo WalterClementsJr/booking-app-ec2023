@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "role")
+@Table(name = "booking_role")
 @NoArgsConstructor
 public class Role extends BaseEntity {
     @Column(name = "name", unique = true)

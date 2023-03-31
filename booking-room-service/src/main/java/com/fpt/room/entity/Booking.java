@@ -11,7 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -19,15 +20,21 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "room_type")
+@Table(name = "booking")
 @NoArgsConstructor
-public class RoomType extends BaseEntity {
-    @Column(name = "name", unique = true)
-    private String name;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "maxOccupancy")
-    private Integer maxOccupancy;
-    @Column(name = "base_price")
-    private BigDecimal basePrice;
+public class Booking extends BaseEntity {
+
+    @Column(name = "check_in_date")
+    private LocalDateTime checkInDate;
+    @Column(name = "check_out_date")
+    private LocalDateTime checkOutDate;
+
+    @Column(name = "passenger_count")
+    private Integer passengerCount;
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "special_requests")
+    private String special_requests;
+
 }
