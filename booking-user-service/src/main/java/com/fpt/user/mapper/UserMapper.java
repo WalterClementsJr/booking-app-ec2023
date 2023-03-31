@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface UserMapper {
     UserDto sourceToDestination(User source);
+
     User destinationToSource(UserDto destination);
 }

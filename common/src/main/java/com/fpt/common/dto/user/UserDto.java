@@ -2,13 +2,11 @@ package com.fpt.common.dto.user;
 
 import com.fpt.common.dto.AddressDto;
 import com.fpt.common.dto.BaseDto;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 

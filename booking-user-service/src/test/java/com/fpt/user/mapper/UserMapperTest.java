@@ -19,7 +19,7 @@ class UserMapperTest {
     private final UserMapper mapper = Mappers.getMapper(UserMapper.class);
 
     @Test
-    void sourceToDestination() {
+    void mapSourceToDestination_expectAllFieldsMappedSuccessfully() {
         User source = new User();
         source.setUsername("123");
         source.setEmail("111");
@@ -53,13 +53,13 @@ class UserMapperTest {
             },
             () -> {
                 assertEquals(source.getBirthdate(), destination.getBirthdate());
-                assertEquals(source.getCreatedTime(), destination.getUpdatedTime());
+                assertEquals(source.getCreatedTime(), destination.getCreatedTime());
             }
         );
     }
 
     @Test
-    void destinationToSource() {
+    void mapDestinationToSource_expectAllFieldsSuccess() {
         UserDto destination = new UserDto();
         destination.setUsername("joejoe");
         destination.setEmail("joana@google.com");
