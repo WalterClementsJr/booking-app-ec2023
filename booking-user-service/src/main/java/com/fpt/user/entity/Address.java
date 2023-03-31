@@ -20,8 +20,8 @@ import javax.persistence.*;
 @Table(name = "address")
 @NoArgsConstructor
 public class Address extends BaseEntity {
-    @Column(name = "address")
-    private String address;
+    @Column(name = "location")
+    private String location;
     @Column(name = "remark")
     private String remark;
     @ManyToOne
