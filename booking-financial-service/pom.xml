@@ -18,6 +18,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.fpt</groupId>
+            <artifactId>common</artifactId>
+            <version>latest</version>
+        </dependency>
+        <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.15</version>

@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,32 +24,26 @@ import java.util.UUID;
 @Setter
 @MappedSuperclass
 @NoArgsConstructor
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     protected Long id;
-
     @Column(name = "uuid", unique = true, updatable = false)
     private UUID uuid;
-
     @Column(name = "created_by")
     @CreatedBy
     private UUID createdBy;
-
     @Column(name = "updated_by")
     @LastModifiedBy
     private UUID updatedBy;
-
     @Column(name = "created_time", updatable = false)
     @CreationTimestamp
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdTime;
-
     @Column(name = "updated_time", updatable = false)
     @UpdateTimestamp
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -57,7 +53,7 @@ public class BaseEntity implements Serializable {
 
     @PrePersist
     private void prePersist() {
-        if (getUuid() == null) {
+        if (uuid == null) {
             this.setUuid(UUID.randomUUID());
         }
     }
