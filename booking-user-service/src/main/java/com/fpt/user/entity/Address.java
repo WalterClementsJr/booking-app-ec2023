@@ -18,6 +18,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "address")
 @NoArgsConstructor
 public class Address extends BaseEntity {
+    @Id
+    @SequenceGenerator(name = "pk_sequence", sequenceName = "entity_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_sequence")
+    @Column(name = "id")
+    private Long id;
     @Column(name = "location")
     private String location;
     @Column(name = "remark")

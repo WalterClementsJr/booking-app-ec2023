@@ -29,7 +29,7 @@ import java.util.UUID;
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     protected Long id;
     @Column(name = "uuid", unique = true, updatable = false)
