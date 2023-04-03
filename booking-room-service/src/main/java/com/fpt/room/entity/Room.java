@@ -19,7 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Room extends BaseEntity {
     @Column(name = "room_number")
-    private Integer roomNumber;
+    private String roomNumber;
     @Column(name = "status")
     private String status;
     @Column(name = "amenities")

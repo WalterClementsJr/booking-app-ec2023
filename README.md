@@ -9,7 +9,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=WalterClementsJr_booking-app-ec2023&metric=ncloc)](https://sonarcloud.io/dashboard?id=WalterClementsJr_booking-app-ec2023)
 
 # Requirements
-- Java 11
+- Java 17
 - Docker
 
 # Development
