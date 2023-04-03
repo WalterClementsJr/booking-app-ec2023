@@ -9,7 +9,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=WalterClementsJr_booking-app-ec2023&metric=ncloc)](https://sonarcloud.io/dashboard?id=WalterClementsJr_booking-app-ec2023)
 
 # Requirements
-- Java 11
+- Java 17
 - Docker
 
 # Development
@@ -82,3 +82,5 @@ then visit the local Sonar server on http://localhost:9001.
 Change default password to `password`, create a new project with key (name) `WalterClementsJr_booking-app-ec2023`
 then run `sonar-scan.cmd` to scan your code.
 
+AOP for logging
+i18n
