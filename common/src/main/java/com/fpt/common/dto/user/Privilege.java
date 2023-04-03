@@ -6,17 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
-import java.util.List;
 
 @SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDto extends BaseDto {
-    private String username;
-    private String email;
+public class Privilege extends BaseDto {
     private String name;
-    private LocalDate birthdate;
-    private List<AddressDto> addresses;
+    private RoleDto role;
 }
