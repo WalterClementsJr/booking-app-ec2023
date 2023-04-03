@@ -1,6 +1,6 @@
 CREATE DATABASE booking;
 
-create table if not exists booking_role
+create table if not exists role
 (
     id           bigint not null,
     created_by   uuid,
@@ -17,13 +17,66 @@ create table if not exists booking_role
     unique (name)
 );
 
-create table if not exists booking_user
+create table if not exists privilege
 (
     id           bigint not null,
     created_by   uuid,
     created_time timestamp,
     updated_by   uuid,
     updated_time timestamp,
+    uuid         uuid,
+    name         varchar(255),
+    role_id      bigint,
+    constraint privilege_pkey
+    primary key (id),
+    constraint uk_hkkbq0189qlql9ss5srnoltsa
+    unique (uuid),
+    constraint fkf0rapce3kwjefytyv5mmvew8u
+    foreign key (role_id) references role
+);
+
+create table if not exists booking_role
+(
+    id           bigint not null,
+    created_by   uuid,
+    created_time timestamp(6),
+    updated_by   uuid,
+    updated_time timestamp(6),
+    uuid         uuid,
+    name         varchar(255),
+    constraint booking_role_pkey
+    primary key (id),
+    constraint uk_7mapk338lgfh88mjwxxfnnkif
+    unique (uuid),
+    constraint uk_ch2a1aj5ohkym3yoxp98t4j4i
+    unique (name)
+);
+
+create table if not exists booking_privilege
+(
+    id           bigint not null,
+    created_by   uuid,
+    created_time timestamp(6),
+    updated_by   uuid,
+    updated_time timestamp(6),
+    uuid         uuid,
+    name         varchar(255),
+    role_id      bigint,
+    constraint booking_privilege_pkey
+    primary key (id),
+    constraint uk_jxrwaqx2xovqp3u206veol0jj
+    unique (uuid),
+    constraint fk4dctqrk2shxlw9tmhj62bit0y
+    foreign key (role_id) references booking_role
+);
+
+create table if not exists booking_user
+(
+    id           bigint not null,
+    created_by   uuid,
+    created_time timestamp(6),
+    updated_by   uuid,
+    updated_time timestamp(6),
     uuid         uuid,
     birthdate    date,
     disabled     boolean,
@@ -42,19 +95,19 @@ create table if not exists booking_user
     unique (email),
     constraint uk_6a48q9vmlo4rch3fujc44vhil
     unique (username),
-    constraint fk9kf60muyi3ex4ytstre6ayv0j
-    foreign key (role_id) references role
+    constraint fkfk7auge7sdf8is8u1v2exaweg
+    foreign key (role_id) references booking_role
 );
 
 create table if not exists address
 (
     id           bigint not null,
     created_by   uuid,
-    created_time timestamp,
+    created_time timestamp(6),
     updated_by   uuid,
-    updated_time timestamp,
+    updated_time timestamp(6),
     uuid         uuid,
-    address      varchar(255),
+    location     varchar(255),
     remark       varchar(255),
     user_id      bigint,
     constraint address_pkey
@@ -65,31 +118,13 @@ create table if not exists address
     foreign key (user_id) references booking_user
 );
 
-create table if not exists booking_privilege
-(
-    id           bigint not null,
-    created_by   uuid,
-    created_time timestamp,
-    updated_by   uuid,
-    updated_time timestamp,
-    uuid         uuid,
-    name         varchar(255),
-    role_id      bigint,
-    constraint privilege_pkey
-    primary key (id),
-    constraint uk_hkkbq0189qlql9ss5srnoltsa
-    unique (uuid),
-    constraint fkf0rapce3kwjefytyv5mmvew8u
-    foreign key (role_id) references role
-);
-
 create table if not exists retailer
 (
     id           bigint not null,
     created_by   uuid,
-    created_time timestamp,
+    created_time timestamp(6),
     updated_by   uuid,
-    updated_time timestamp,
+    updated_time timestamp(6),
     uuid         uuid,
     is_official  boolean,
     name         varchar(255),
