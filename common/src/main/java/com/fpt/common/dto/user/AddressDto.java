@@ -1,6 +1,7 @@
-package com.fpt.common.dto;
+package com.fpt.common.dto.user;
 
 
+import com.fpt.common.dto.BaseDto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
