@@ -27,6 +27,6 @@ public class PromotionUsage extends BaseEntity {
     private Double discountAmount;
 
     @ManyToOne
-    @JoinColumn(name="promotion_id")
+    @JoinColumn(name = "promotion_id")
     private Promotion promotion;
 }
