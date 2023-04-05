@@ -21,6 +21,8 @@ import java.util.List;
 @Table(name = "booking_role")
 @NoArgsConstructor
 public class Role extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
     @Column(name = "name", unique = true)
     private String name;
 
