@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.List;
+import java.util.UUID;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -16,13 +16,17 @@ import java.util.List;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "customer_point")
+@Table(name = "promotion_usage")
 @NoArgsConstructor
-public class CustomerPoint extends BaseEntity {
+public class PromotionUsage extends BaseEntity {
     @Column(name = "customer_uuid")
-    private String customerUuid;
-    @Column(name = "total_point")
-    private Long totalPoint;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "point")
-    private List<PointHistory> pointHistories;
+    private UUID customerUuid;
+    @Column(name = "booking_uuid")
+    private UUID bookingUuid;
+    @Column(name = "discount_amount")
+    private Double discountAmount;
+
+    @ManyToOne
+    @JoinColumn(name="promotion_id")
+    private Promotion promotion;
 }

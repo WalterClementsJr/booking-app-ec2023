@@ -1,5 +1,6 @@
 package com.fpt.financial.entity;
 
+
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -16,13 +17,17 @@ import java.util.List;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "customer_point")
+@Table(name = "exchange")
 @NoArgsConstructor
-public class CustomerPoint extends BaseEntity {
-    @Column(name = "customer_uuid")
-    private String customerUuid;
-    @Column(name = "total_point")
-    private Long totalPoint;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "point")
-    private List<PointHistory> pointHistories;
+public class Exchange extends BaseEntity {
+    @Column(name = "exchange_date")
+    private LocalDate exchangeDate;
+    @Column(name = "exchanged_item")
+    private String exchangedItem;
+    @Column(name = "exchanged_points")
+    private Long exchangedPoints;
+
+    @ManyToOne
+    @JoinColumn(name = "point_id")
+    private CustomerPoint point;
 }

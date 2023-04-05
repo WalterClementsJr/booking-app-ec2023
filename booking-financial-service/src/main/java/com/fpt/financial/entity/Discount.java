@@ -1,6 +1,9 @@
 package com.fpt.financial.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,21 +11,21 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.List;
-
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "customer_point")
+@Table(name = "discount")
 @NoArgsConstructor
-public class CustomerPoint extends BaseEntity {
+public class Discount extends BaseEntity {
     @Column(name = "customer_uuid")
     private String customerUuid;
-    @Column(name = "total_point")
-    private Long totalPoint;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "point")
-    private List<PointHistory> pointHistories;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "discount_percent")
+    private Double discountPercent;
+    @Column(name = "room_type_uuid")
+    private String roomTypeUuid;
 }
