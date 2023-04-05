@@ -8,8 +8,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
-
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Getter
@@ -27,7 +25,8 @@ public class Room extends BaseEntity {
     private String amenities;
     @Column(name = "image")
     private String image;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
     private RoomType roomType;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")

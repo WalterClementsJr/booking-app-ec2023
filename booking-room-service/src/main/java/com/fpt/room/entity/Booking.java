@@ -8,10 +8,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
