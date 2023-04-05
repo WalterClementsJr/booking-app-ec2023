@@ -4,7 +4,7 @@ import com.fpt.common.dto.user.UserDto;
 import com.fpt.user.entity.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserDto sourceToDestination(User source);
 

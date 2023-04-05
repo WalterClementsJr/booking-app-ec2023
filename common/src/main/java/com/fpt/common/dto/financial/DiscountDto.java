@@ -1,4 +1,4 @@
-package com.fpt.common.dto.user;
+package com.fpt.common.dto.financial;
 
 import com.fpt.common.dto.BaseDto;
 import lombok.Getter;
@@ -10,9 +10,9 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RetailerDto extends BaseDto {
+public class DiscountDto extends BaseDto {
+    private String customerUuid;
     private String name;
-    private String taxNumber;
-    private Boolean isOfficial;
-    private UserDto user;
+    private Double discountPercent;
+    private String roomTypeUuid;
 }

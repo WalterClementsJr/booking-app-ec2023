@@ -1,6 +1,5 @@
-package com.fpt.common.dto.user;
+package com.fpt.common.dto.financial;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fpt.common.dto.BaseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RoleDto extends BaseDto {
-    private String name;
-    @JsonIgnore
-    private List<Privilege> privilege;
+public class CustomerPointDto extends BaseDto {
+    private String customerUuid;
+    private Long totalPoint;
+    private List<PointHistoryDto> pointHistories;
 }

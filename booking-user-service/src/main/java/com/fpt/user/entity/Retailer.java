@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Getter
@@ -20,6 +19,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "retailer")
 @NoArgsConstructor
 public class Retailer extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
     @Column(name = "name")
     private String name;
     @Column(name = "taxNumber")

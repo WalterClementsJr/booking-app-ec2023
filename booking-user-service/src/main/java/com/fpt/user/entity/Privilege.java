@@ -9,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Getter
