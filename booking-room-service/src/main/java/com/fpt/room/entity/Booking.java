@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -30,12 +31,12 @@ public class Booking extends BaseEntity {
     private String location;
     @Column(name = "special_requests")
     private String specialRequests;
-    @Column(name = "promotion_usage_id")
-    private String promotionUsageId;
+    @Column(name = "promotion_usage_uuid")
+    private UUID promotionUsageUuid;
     @Column(name = "discount_uuid")
-    private String discountUuid;
+    private UUID discountUuid;
     @Column(name = "point_uuid")
-    private String pointUuid;
+    private UUID pointUuid;
     @Column(name = "total_price")
     private BigDecimal totalPrice;
     @Column(name = "quantity")

@@ -11,6 +11,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.UUID;
+
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Getter
@@ -21,11 +23,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 public class Discount extends BaseEntity {
     @Column(name = "customer_uuid")
-    private String customerUuid;
+    private UUID customerUuid;
     @Column(name = "name")
     private String name;
     @Column(name = "discount_percent")
     private Double discountPercent;
     @Column(name = "room_type_uuid")
-    private String roomTypeUuid;
+    private UUID roomTypeUuid;
 }
