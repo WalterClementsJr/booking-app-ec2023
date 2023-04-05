@@ -1,5 +1,6 @@
 package com.fpt.financial.controller.messaging;
 
+import com.fpt.common.dto.user.UserDto;
 import com.fpt.financial.entity.CustomerPoint;
 import com.fpt.financial.service.CustomerPointService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class FinancialApplication {
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
     private final CustomerPointService customerPointService;
 
     @Bean
@@ -28,17 +29,14 @@ public class FinancialApplication {
 
     @Bean
     public NewTopic userTopic() {
-        return TopicBuilder.name("room")
+        return TopicBuilder.name("topic-one")
             .partitions(3)
             .compact()
             .build();
     }
 
-
-    @KafkaListener(id = "orders", topics = "orders", groupId = "payment")
-    public void onEvent(CustomerPoint o) {
+    @KafkaListener(id = "123", topics = "topic-one", groupId = "group-one")
+    public void onEvent(UserDto o) {
         log.info("Received: {}", o);
-//        kafkaTemplate.send()
-        // TODO: add logic here
     }
 }
