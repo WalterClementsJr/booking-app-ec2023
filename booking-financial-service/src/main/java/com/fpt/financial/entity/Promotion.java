@@ -1,5 +1,6 @@
 package com.fpt.financial.entity;
 
+import com.fpt.common.enums.PromotionStatus;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,6 +31,9 @@ public class Promotion extends BaseEntity {
     private LocalDateTime endDate;
     @Column(name = "discount_percent")
     private Double discountPercent;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private PromotionStatus status;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "promotion")
     private List<PromotionUsage> promotionUsage;
 }
