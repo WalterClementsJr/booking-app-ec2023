@@ -32,11 +32,11 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = "birthdate")
     private LocalDate birthdate;
     @Column(name = "expired")
-    private boolean expired;
+    private Boolean expired;
     @Column(name = "locked")
-    private boolean locked;
+    private Boolean locked;
     @Column(name = "disabled")
-    private boolean disabled;
+    private Boolean disabled;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Address> addresses;
     @ManyToOne

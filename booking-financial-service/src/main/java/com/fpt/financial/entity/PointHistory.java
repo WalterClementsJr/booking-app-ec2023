@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -20,9 +21,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PointHistory extends BaseEntity {
     @Column(name = "customer_uuid")
-    private String customerUuid;
+    private UUID customerUuid;
     @Column(name = "booking_uuid")
-    private String bookingUuid;
+    private UUID bookingUuid;
     @Column(name = "point")
     private Long point;
     @Column(name = "point_date")

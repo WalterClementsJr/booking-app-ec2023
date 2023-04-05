@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -22,7 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Promotion extends BaseEntity {
     @Column(name = "room_uuid")
-    private String roomUuid;
+    private UUID roomUuid;
     @Column(name = "promotion_name")
     private String promotionName;
     @Column(name = "start_date")
