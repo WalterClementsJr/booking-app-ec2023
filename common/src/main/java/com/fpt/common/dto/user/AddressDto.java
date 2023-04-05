@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 
 
 @SuperBuilder
-@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 @NoArgsConstructor
