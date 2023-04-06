@@ -26,7 +26,7 @@ public class RoomType extends BaseEntity {
     private String name;
     @Column(name = "description")
     private String description;
-    @Column(name = "maxOccupancy")
+    @Column(name = "max_occupancy")
     private Integer maxOccupancy;
     @Column(name = "base_price")
     private BigDecimal basePrice;
