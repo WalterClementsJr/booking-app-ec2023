@@ -30,7 +30,7 @@
     <loggers>
         <root level="DEBUG">
             <appender-ref ref="console" level="INFO"/>
-<!--            <appender-ref ref="rollingFile" level="WARN"/>-->
+            <appender-ref ref="rollingFile" level="WARN"/>
         </root>
     </loggers>
 </Configuration>

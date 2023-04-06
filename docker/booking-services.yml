@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  booking-api-gw:
+    build:
+      context: ../booking-api-gw/
+      dockerfile: Dockerfile
+      args:
+        JAVA_IMAGE: ${JAVA_IMAGE}
+        ARTIFACT: ${APIGW_ARTIFACT}
+        TAG: ${APIGW_SERVICE_TAG}
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../${APIGW_ARTIFACT}/target/:/root/booking/${APIGW_ARTIFACT}
+    entrypoint: java -jar /root/booking/${APIGW_ARTIFACT}/${APIGW_ARTIFACT}-${APIGW_SERVICE_TAG}.jar &
+#    entrypoint: tail -f /dev/null
+
+  booking-user-service:
+    build:
+      context: ../booking-user-service/
+      dockerfile: Dockerfile
+      args:
+        JAVA_IMAGE: ${JAVA_IMAGE}
+        ARTIFACT: ${USER_ARTIFACT}
+        TAG: ${USER_SERVICE_TAG}
+    ports:
+      - "9091:9091"
+    volumes:
+      - ../${USER_ARTIFACT}/target/:/root/booking/${USER_ARTIFACT}
+#    entrypoint: java -jar /root/booking/${USER_ARTIFACT}/${USER_ARTIFACT}-${USER_SERVICE_TAG}.jar &
+    entrypoint: tail -f /dev/null
+
+
+  booking-room-service:
+    build:
+      context: ../booking-room-service/
+      dockerfile: Dockerfile
+      args:
+        JAVA_IMAGE: ${JAVA_IMAGE}
+        ARTIFACT: ${ROOM_ARTIFACT}
+        TAG: ${ROOM_SERVICE_TAG}
+    ports:
+      - "9092:9092"
+    volumes:
+      - ../${USER_ARTIFACT}/target/:/root/booking/${ROOM_ARTIFACT}
+    entrypoint: java -jar /root/booking/${ROOM_ARTIFACT}/${ROOM_ARTIFACT}-${ROOM_SERVICE_TAG}.jar &
+
+  booking-financial-service:
+    build:
+      context: ../booking-financial-service/
+      dockerfile: Dockerfile
+      args:
+        JAVA_IMAGE: ${JAVA_IMAGE}
+        ARTIFACT: ${FIN_ARTIFACT}
+        TAG: ${FIN_SERVICE_TAG}
+    ports:
+      - "9093:9093"
+    volumes:
+      - ../${FIN_ARTIFACT}/target/:/root/booking/${FIN_ARTIFACT}
+    entrypoint: java -jar /root/booking/${FIN_ARTIFACT}/${FIN_ARTIFACT}-${FIN_SERVICE_TAG}.jar &
+
+networks:
+  booking:
+    external: true
+    name: booking

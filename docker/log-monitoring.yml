@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  elasticsearch:
+    image: elasticsearch:${ELASTIC_VERSION}
+    container_name: elasticsearch
+    restart: unless-stopped
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    networks:
+      - elk
+
+  logstash:
+    image: logstash:${ELASTIC_VERSION}
+    container_name: logstash
+    restart: unless-stopped
+    volumes:
+      - ./logstash/:/logstash_dir
+    command: logstash -f /logstash_dir/logstash.conf
+    depends_on:
+      - elasticsearch
+    ports:
+      - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+
+  kibana:
+    image: kibana:${ELASTIC_VERSION}
+    container_name: kibana
+    restart: unless-stopped
+    ports:
+      - '5601:5601'
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+
+volumes:
+  elastic_data: {}
+
+networks:
+  elk:
+  booking:
+    external:
+      name: booking_net
+

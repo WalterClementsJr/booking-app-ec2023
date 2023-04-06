@@ -1,5 +1,11 @@
-FROM amazoncorretto:11-alpine3.17-jdk
-EXPOSE 9090
-ENV jarname=booking-api-gw-latest.jar
-COPY ./target/${jarname} ${jarname}
-ENTRYPOINT java -jar /${jarname} & 
+ARG JAVA_IMAGE
+FROM ${JAVA_IMAGE}
+
+ARG ARTIFACT
+ARG TAG
+
+RUN mkdir -p ~/booking/${ARTIFACT}
+RUN chmod 755 ~/booking/${ARTIFACT}
+
+#COPY ../booking-api-gw/target/${ARTIFACT}-${TAG}.jar /root/booking/${ARTIFACT}/${ARTIFACT}-${TAG}.jar
+#COPY ../booking-api-gw/target/ /root/booking/${ARTIFACT}/
