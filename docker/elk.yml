@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  elk:
+    image: sebp/elk:8.6.2
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    environment:
+      ELASTICSEARCH_START: 1
+      LOGSTASH_START: 1
+      KIBANA_START: 1
+      ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+      ES_CONNECT_RETRY: '300'
+      LS_JAVA_OPTS: '-Xmx256m -Xms256m'
+      LS_HEAP_SIZE: '-Xmx256m -Xms256m'
+      ELASTICSEARCH_USERNAME: 'elastic'
+      ELASTICSEARCH_PASSWORD: 'password'
+      ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+      ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD}
+      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD}
+
+volumes:
+  elasticsearch-data:
+    driver: local
+
+networks:
+  elknet:
+    driver: bridge
