@@ -4,6 +4,8 @@ services:
     image: openzipkin/zipkin:2.23
     ports:
       - "9411:9411"
+    networks:
+      - booking-network
 
   pgadmin:
     image: dpage/pgadmin4:6.21
@@ -23,6 +25,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "22181:2181"
+    networks:
+      - booking-network
 
   kafka-zero:
     image: confluentinc/cp-kafka:7.3.2
@@ -30,13 +34,17 @@ services:
       - zookeeper
     ports:
       - "29092:29092"
+      - "29094:29094"
       - "29097:29097"
+    networks:
+      - booking-network
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-zero:9009,PLAINTEXT_HOST://localhost:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:29094,OUTSIDE://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:29094,OUTSIDE://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_JMX_PORT: "29097"
       KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-zero -Dcom.sun.management.jmxremote.rmi.port=29097
@@ -46,7 +54,7 @@ services:
     depends_on:
       - kafka-zero
     ports:
-    - "29093:29093"
+      - "29093:29093"
     environment:
       KAFKA_CLUSTERS_0_NAME: booking-local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-zero:29092
@@ -54,3 +62,8 @@ services:
 #        KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schemaregistry0:8085
 #        KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: first
 #        KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://kafka-connect0:8083
+
+networks:
+  booking-network:
+    external: true
+    name: booking-network

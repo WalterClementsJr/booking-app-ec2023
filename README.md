@@ -84,3 +84,13 @@ then run `sonar-scan.cmd` to scan your code.
 
 AOP for logging
 i18n
+
+# Deployment
+Run  
+`./mvnw clean package`  
+to build jar files.  
+Then run  
+`docker-compose -f .\docker\database.yml up -d`  
+`docker-compose -f .\dev.yml up -d`  
+`docker-compose -f .\docker\booking-services.yml up -d`  
+to build images and launch containers.
