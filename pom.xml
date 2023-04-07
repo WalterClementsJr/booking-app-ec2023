@@ -12,6 +12,7 @@
         <module>booking-api-gw</module>
         <module>booking-user-service</module>
         <module>eureka-server</module>
+        <module>booking-webapp</module>
     </modules>
 
     <parent>
