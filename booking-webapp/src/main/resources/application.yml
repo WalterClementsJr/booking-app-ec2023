@@ -1,0 +1,14 @@
+server:
+  port: 10100
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+
+spring:
+  thymeleaf:
+    cache: false
+  messages:
+    basename: messages
+
+
