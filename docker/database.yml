@@ -12,6 +12,8 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     restart: unless-stopped
+    networks:
+      - booking-network
 
   booking-room-postgresql:
     image: postgres:14.5
@@ -25,6 +27,8 @@ services:
     ports:
       - "127.0.0.1:5433:5432"
     restart: unless-stopped
+    networks:
+      - booking-network
 
   booking-financial-postgresql:
     image: postgres:14.5
@@ -38,6 +42,8 @@ services:
     ports:
       - "127.0.0.1:5434:5432"
     restart: unless-stopped
+    networks:
+      - booking-network
 
 volumes:
   pg-user:
@@ -46,3 +52,7 @@ volumes:
     driver: local
   pg-fin:
     driver: local
+
+networks:
+  booking-network:
+    name: booking-network

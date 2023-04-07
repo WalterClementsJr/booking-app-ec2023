@@ -1,6 +1,28 @@
 version: '3.8'
 
 services:
+  eureka-server:
+    build:
+      context: ../eureka-server/
+      dockerfile: Dockerfile
+      args:
+        JAVA_IMAGE: ${JAVA_IMAGE}
+        ARTIFACT: ${EUREKA_ARTIFACT}
+        TAG: ${EUREKA_SERVICE_TAG}
+    ports:
+      - "9876:9876"
+    networks:
+      - booking-network
+    volumes:
+      - booking-volume:/root/booking/${EUREKA_ARTIFACT}
+      - ../${EUREKA_ARTIFACT}/target/:/root/booking/${EUREKA_ARTIFACT}
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.zipkin.base-url": "http://host.docker.internal:9411/",
+        "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
+      }'
+    entrypoint: java -jar /root/booking/${EUREKA_ARTIFACT}/${EUREKA_ARTIFACT}-${EUREKA_SERVICE_TAG}.jar &
+
   booking-api-gw:
     build:
       context: ../booking-api-gw/
@@ -11,10 +33,19 @@ services:
         TAG: ${APIGW_SERVICE_TAG}
     ports:
       - "9090:9090"
+    networks:
+      - booking-network
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.zipkin.base-url": "http://host.docker.internal:9411/",
+        "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
+      }'
     volumes:
+      - booking-volume:/root/booking/${APIGW_ARTIFACT}
       - ../${APIGW_ARTIFACT}/target/:/root/booking/${APIGW_ARTIFACT}
     entrypoint: java -jar /root/booking/${APIGW_ARTIFACT}/${APIGW_ARTIFACT}-${APIGW_SERVICE_TAG}.jar &
-#    entrypoint: tail -f /dev/null
 
   booking-user-service:
     build:
@@ -26,11 +57,21 @@ services:
         TAG: ${USER_SERVICE_TAG}
     ports:
       - "9091:9091"
+    networks:
+      - booking-network
+    depends_on:
+      - eureka-server
     volumes:
+      - booking-volume:/root/booking/${USER_ARTIFACT}
       - ../${USER_ARTIFACT}/target/:/root/booking/${USER_ARTIFACT}
-#    entrypoint: java -jar /root/booking/${USER_ARTIFACT}/${USER_ARTIFACT}-${USER_SERVICE_TAG}.jar &
-    entrypoint: tail -f /dev/null
-
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url": "jdbc:postgresql://host.docker.internal:5432/booking",
+        "spring.zipkin.base-url": "http://host.docker.internal:9411/",
+        "spring.kafka.bootstrap-servers": "host.docker.internal:29092",
+        "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
+      }'
+    entrypoint: java -jar /root/booking/${USER_ARTIFACT}/${USER_ARTIFACT}-${USER_SERVICE_TAG}.jar &
 
   booking-room-service:
     build:
@@ -42,8 +83,20 @@ services:
         TAG: ${ROOM_SERVICE_TAG}
     ports:
       - "9092:9092"
+    networks:
+      - booking-network
+    depends_on:
+      - eureka-server
     volumes:
-      - ../${USER_ARTIFACT}/target/:/root/booking/${ROOM_ARTIFACT}
+      - booking-volume:/root/booking/${ROOM_ARTIFACT}
+      - ../${ROOM_ARTIFACT}/target/:/root/booking/${ROOM_ARTIFACT}
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url": "jdbc:postgresql://host.docker.internal:5433/booking",
+        "spring.zipkin.base-url": "http://host.docker.internal:9411/",
+        "spring.kafka.bootstrap-servers": "host.docker.internal:29092",
+        "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
+      }'
     entrypoint: java -jar /root/booking/${ROOM_ARTIFACT}/${ROOM_ARTIFACT}-${ROOM_SERVICE_TAG}.jar &
 
   booking-financial-service:
@@ -56,11 +109,27 @@ services:
         TAG: ${FIN_SERVICE_TAG}
     ports:
       - "9093:9093"
+    networks:
+      - booking-network
+    depends_on:
+      - eureka-server
     volumes:
+      - booking-volume:/root/booking/${FIN_ARTIFACT}
       - ../${FIN_ARTIFACT}/target/:/root/booking/${FIN_ARTIFACT}
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.jpa.hibernate.ddl-auto": "update",
+        "spring.datasource.url": "jdbc:postgresql://host.docker.internal:5433/booking",
+        "spring.zipkin.base-url": "http://host.docker.internal:9411/",
+        "spring.kafka.bootstrap-servers": "host.docker.internal:29094",
+        "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
+      }'
     entrypoint: java -jar /root/booking/${FIN_ARTIFACT}/${FIN_ARTIFACT}-${FIN_SERVICE_TAG}.jar &
 
 networks:
-  booking:
+  booking-network:
     external: true
-    name: booking
+    name: booking-network
+
+volumes:
+  booking-volume:
