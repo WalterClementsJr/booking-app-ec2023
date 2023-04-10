@@ -82,9 +82,6 @@ then visit the local Sonar server on http://localhost:9001.
 Change default password to `password`, create a new project with key (name) `WalterClementsJr_booking-app-ec2023`
 then run `sonar-scan.cmd` to scan your code.
 
-AOP for logging
-i18n
-
 # Deployment
 Run  
 `./mvnw clean package`  
@@ -94,3 +91,8 @@ Then run
 `docker-compose -f .\dev.yml up -d`  
 `docker-compose -f .\docker\booking-services.yml up -d`  
 to build images and launch containers.
+
+# TODO
+- AOP for logging
+- i18n
+- circuit breaker

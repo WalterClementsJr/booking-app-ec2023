@@ -119,7 +119,7 @@ services:
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.jpa.hibernate.ddl-auto": "update",
-        "spring.datasource.url": "jdbc:postgresql://host.docker.internal:5433/booking",
+        "spring.datasource.url": "jdbc:postgresql://host.docker.internal:5434/booking",
         "spring.zipkin.base-url": "http://host.docker.internal:9411/",
         "spring.kafka.bootstrap-servers": "host.docker.internal:29094",
         "eureka.client.service-url.default-zone": "http://host.docker.internal:9876/eureka"
