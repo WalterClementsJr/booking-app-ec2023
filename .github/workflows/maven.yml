@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - "dev"
+      - "ci-cd"
   pull_request:
     branches:
       - "dev"
+      - "ci-cd"
     types: [opened, synchronize, closed]
 
 jobs:
@@ -23,3 +25,23 @@ jobs:
           cache: maven
       - name: Perform Maven commands
         run: mvn clean test
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          connection_url: ${{secrets.MAIL_CONNECTION}}
+          server_address: smtp.gmail.com
+          # Server port, default 25:
+          server_port: 465
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Github Actions on ${{github.repository}} is ${{job.status}}
+          # Required recipients' addresses:
+          to: skywalker2834@gmail.com, notthienng@gmail.com
+          # Required sender full name
+          from: ThienNT14
+          body: ${{github.job}} in workflow ${{github.workflow}} of ${{github.repository}} triggered by ${{github.actor}} is ${{job.status}}.
+          ignore_cert: true
+          convert_markdown: true
+          priority: normal
