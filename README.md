@@ -39,7 +39,7 @@ Service discovery server.
 ### Zookeeper
 - port 22181  
 `Zookeeper` server is listening on port 2181 for the `kafka` service.
-However, for any client running on the host, it will be exposed on port 22181.
+  exposed on port 22181 any client running on the host,.
 
 ### Kafka
 - port: 29092  
@@ -71,6 +71,11 @@ Room management, booking, payment.
 Handle payment history, customer points, promotions,...
 - port: 9093
 - SwaggerUI: http://localhost:9093/swagger-ui.html
+
+
+### Front-end web application
+Thymeleaf front-end.
+- port 10100
 
 ## Code quality
 Analyse code quality using [Sonar Cloud](https://sonarcloud.io/project/overview?id=WalterClementsJr_booking-app-ec2023)
