@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  bookingapp-prometheus:
+    image: prom/prometheus:v2.43.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+
+  bookingapp-grafana:
+    image: grafana/grafana-oss:9.2.15
+    volumes:
+      - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=123456
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+networks:
+  microservices:
+    name: booking-network
+    external: true
