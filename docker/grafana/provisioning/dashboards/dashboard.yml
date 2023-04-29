@@ -8,4 +8,8 @@ providers:
     disableDeletion: false
     editable: true
     options:
-      path: /etc/grafana/provisioning/dashboards
+      path: /var/lib/grafana/dashboards
+
+#TODO
+#sum(jvm_memory_used_bytes)/1000000
+#sum(rate(system_cpu_usage[10m]))

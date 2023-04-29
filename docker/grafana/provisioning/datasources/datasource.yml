@@ -1,18 +1,15 @@
 apiVersion: 1
 
-# list of datasources that should be deleted from the database
 deleteDatasources:
   - name: Prometheus
     orgId: 1
 
-# list of datasources to insert/update depending
-# whats available in the database
 datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://localhost:6060
+    url: http://host.docker.internal:9090
     password:
     # <string> database user, if used
     user:
@@ -23,7 +20,7 @@ datasources:
     # <string> basic auth username
     basicAuthUser: admin
     # <string> basic auth password
-    basicAuthPassword: admin
+    basicAuthPassword: 123456
     # <bool> enable/disable with credentials headers
     withCredentials:
     # <bool> mark as default datasource. Max one per org

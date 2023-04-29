@@ -4,22 +4,29 @@ global:
   scrape_timeout: 10s # default
 
 scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: [ 'localhost:9090' ]
+
+#  - job_name: 'system'
+#    static_configs:
+#      - targets: [ 'host.docker.internal:9101' ]
+
   - job_name: 'booking-prometheus'
-
-    scrape_interval: 10s
-
-    # scheme: https
-    basic_auth:
-      username: admin
-      password: admin
+    #    basic_auth:
+    #      username: admin
+    #      password: admin
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'localhost:9091' ]
+      - targets: [ 'host.docker.internal:19090' ]
         labels:
-          application: 'Booking User Service'
+          application: 'booking-apigw'
+      - targets: [ 'localhost:9090' ]
+        labels:
+          application: 'booking-user-service'
       - targets: [ 'localhost:9092' ]
         labels:
-          application: 'Booking Room Service'
+          application: 'booking-room-service'
       - targets: [ 'localhost:9093' ]
         labels:
-          application: 'Booking Financial Service'
+          application: 'booking-financial-service'
