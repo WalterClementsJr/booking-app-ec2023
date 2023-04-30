@@ -1,4 +1,4 @@
-server.port: 9093
+server.port: 19093
 spring:
   application.name: booking-financial-service
   datasource:

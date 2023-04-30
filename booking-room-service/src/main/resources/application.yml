@@ -1,4 +1,4 @@
-server.port: 9092
+server.port: 19092
 spring:
   application:
     name: booking-room-service

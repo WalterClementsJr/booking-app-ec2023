@@ -4,8 +4,8 @@ services:
     image: openzipkin/zipkin:2.23
     ports:
       - "9411:9411"
-    networks:
-      - booking-network
+#    networks:
+#      - booking-network
 
   pgadmin:
     image: dpage/pgadmin4:6.21
@@ -25,8 +25,9 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "22181:2181"
-    networks:
-      - booking-network
+    restart: unless-stopped
+#    networks:
+#      - booking-network
 
   kafka-zero:
     image: confluentinc/cp-kafka:7.3.2
@@ -36,8 +37,6 @@ services:
       - "29092:29092"
       - "29094:29094"
       - "29097:29097"
-    networks:
-      - booking-network
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -48,6 +47,9 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_JMX_PORT: "29097"
       KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka-zero -Dcom.sun.management.jmxremote.rmi.port=29097
+    restart: unless-stopped
+#    networks:
+#      - booking-network
 
   kafka-tool:
     image: provectuslabs/kafka-ui:v0.6.1
