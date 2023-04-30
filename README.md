@@ -55,7 +55,7 @@ Service discovery server.
 
 ### Prometheus
 
-- port: 6060
+- port: 9080
 
 ### Grafana
 
