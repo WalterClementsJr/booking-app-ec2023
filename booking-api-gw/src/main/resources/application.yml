@@ -1,4 +1,4 @@
-server.port: 9090
+server.port: 19090
 spring:
   application:
     name: booking-api-gateway

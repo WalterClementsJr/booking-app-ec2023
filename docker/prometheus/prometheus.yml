@@ -8,25 +8,28 @@ scrape_configs:
     static_configs:
       - targets: [ 'localhost:9090' ]
 
-#  - job_name: 'system'
-#    static_configs:
-#      - targets: [ 'host.docker.internal:9101' ]
-
   - job_name: 'booking-prometheus'
     #    basic_auth:
     #      username: admin
     #      password: admin
     metrics_path: '/actuator/prometheus'
     static_configs:
+      - targets: [ 'host.docker.internal:9876' ]
+        labels:
+          application: 'booking-eurekaserver'
       - targets: [ 'host.docker.internal:19090' ]
         labels:
           application: 'booking-apigw'
-      - targets: [ 'localhost:9090' ]
+      - targets: [ 'host.docker.internal:19091' ]
         labels:
           application: 'booking-user-service'
-      - targets: [ 'localhost:9092' ]
+      - targets: [ 'host.docker.internal:19092' ]
         labels:
           application: 'booking-room-service'
-      - targets: [ 'localhost:9093' ]
+      - targets: [ 'host.docker.internal:19093' ]
         labels:
           application: 'booking-financial-service'
+
+#  - job_name: 'system'
+#    static_configs:
+#      - targets: [ 'host.docker.internal:9101' ]

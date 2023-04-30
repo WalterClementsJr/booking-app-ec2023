@@ -1,4 +1,4 @@
-server.port: 9091
+server.port: 19091
 spring:
   application:
     name: booking-user-service
